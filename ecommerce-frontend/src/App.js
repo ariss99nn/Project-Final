@@ -1,16 +1,21 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Productos from "./pages/Productos";
+import Login from "./pages/Login";
+
+const PrivateRoute = ({ element }) => {
+    const token = localStorage.getItem("token");
+    return token ? element : <Navigate to="/login" />;
+};
 
 function App() {
     return (
         <Router>
             <Navbar />
             <Routes>
-                <Route path="/" element={<h1>Página de Inicio</h1>} />
-                <Route path="/productos" element={<h1>Página de Productos</h1>} />
-                <Route path="/carrito" element={<h1>Página del Carrito</h1>} />
-                <Route path="/login" element={<h1>Página de Login</h1>} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/productos" element={<PrivateRoute element={<Productos />} />} />
             </Routes>
         </Router>
     );

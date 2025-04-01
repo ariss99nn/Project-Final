@@ -10,7 +10,7 @@ from django.contrib.auth.models import Permission
 class IsAdminOrEmployee(BasePermission):
     def has_permission(self, request, view):
         if request.user.is_authenticated:
-            return request.user.groups.filter(name__in=["ADMIN", "EMPLEADO"]).exists()
+            return request.user.groups.filter(name__in=["ADMIN", "EMPLOYEE", "CLIENT"]).exists()
         return False  # No autenticado, sin acceso
     
 class CategoriaViewSet(viewsets.ModelViewSet):
@@ -25,9 +25,9 @@ class ProductoViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         
         user = self.request.user
-        if user.groups.filter(name="ADMIN").exists() or user.groups.filter(name="EMPLEADO").exists():
+        if user.groups.filter(name="ADMIN").exists() or user.groups.filter(name="EMPLOYEE").exists():
             return Producto.objects.all()  # Admins y empleados ven todo
-        elif user.groups.filter(name="CLIENTE").exists():
+        elif user.groups.filter(name="CLIENT").exists():
             return Producto.objects.all()  # Clientes ven todo, pero no pueden modificar
         return Producto.objects.none()  # No autorizado
     
