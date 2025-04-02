@@ -8,7 +8,7 @@ const Productos = () => {
 
     // Función para obtener los productos con el token
     const getProductos = async () => {
-        const token = localStorage.getItem("token"); // Obtener el token
+       const token = localStorage.getItem("token"); // Obtener el token
 
         if (!token) {
             setError("No tienes acceso. Inicia sesión.");
@@ -17,7 +17,7 @@ const Productos = () => {
         }
 
         try {
-            // Hacer la solicitud a la API con el token en la cabecera
+            //Hacer la solicitud a la API con el token en la cabecera
             const response = await fetch("http://localhost:8000/api/productos/", {
                 method: "GET",
                 headers: {
@@ -30,20 +30,20 @@ const Productos = () => {
                 throw new Error("Acceso denegado");
             }
 
-            const data = await response.json();
-            setProductos(data);
-            setCargando(false);
+            //const data = await response.json();
+            //setProductos(data);
+            //setCargando(false);
         } catch (err) {
             console.error("Error:", err);
-            setError("No tienes permisos para ver los productos.");
+            //setError("No tienes permisos para ver los productos.");
             setCargando(false);
         }
     };
 
     // Llamamos a la función al cargar el componente
-    useEffect(() => {
-        getProductos(); // Llamamos a la función para obtener los productos
-    }, []);
+    //useEffect(() => {
+        //getProductos(); // Llamamos a la función para obtener los productos
+    //}, []);
 
     return (
         <div className="productos-container">

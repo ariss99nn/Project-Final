@@ -20,16 +20,18 @@ class CategoriaViewSet(viewsets.ModelViewSet):
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
-    permission_classes = [IsAuthenticated, IsAdminOrEmployee]  #Se aplica el permiso
+    
+    #IsAuthenticated
+    permission_classes = [IsAdminOrEmployee]  #Se aplica el permiso
 
     def get_queryset(self):
         
         user = self.request.user
         if user.groups.filter(name="ADMIN").exists() or user.groups.filter(name="EMPLOYEE").exists():
             return Producto.objects.all()  # Admins y empleados ven todo
-        elif user.groups.filter(name="CLIENT").exists():
-            return Producto.objects.all()  # Clientes ven todo, pero no pueden modificar
-        return Producto.objects.none()  # No autorizado
+        #elif user.groups.filter(name="CLIENT").exists():
+        #    return Producto.objects.all()  # Clientes ven todo, pero no pueden modificar
+        #return Producto.objects.none()  # No autorizado
     
 class ProveedorViewSet(viewsets.ModelViewSet):
     queryset = Proveedor.objects.all()

@@ -386,7 +386,7 @@ urlpatterns = [
     path('', include(router.urls)),
 ]
 
---Crear uyrls.py en inventario
+--Crear urls.py en inventario
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
@@ -902,3 +902,30 @@ GET /ventas/calificaciones/ (debes ver las calificaciones registradas).
 npx create-react-app ecommerce-frontend
 npm install axios
 npm audit fix --force
+
+<div>
+                    <label htmlFor="username">Usuario</label>
+                    <input
+                        type="email"
+                        id="username"
+                        name="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}  // Actualizamos el valor de username
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Contraseña</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}  // Actualizamos el valor de password
+                        required
+                    />
+                </div>
+                <button type="submit">Ingresar</button>
+            </form>
+            {error && <p>{error}</p>}  {/* Si hay un error, lo mostramos */}
+        </div>
