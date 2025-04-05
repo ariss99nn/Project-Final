@@ -38,17 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'corsheaders',
     # Apps creadas
     'usuarios',
     'productos',
     'ventas',
-    'inventario.apps.InventarioConfig',
+    'inventario',
     
     # Django REST Framework (lo usaremos después)
-    'rest_framework',
-    'rest_framework_simplejwt',
-    'corsheaders',
+    
 ]
 # Configuración de autenticación
 
@@ -112,8 +112,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ecommerce_db',       # Nombre de la base de datos
-        'USER': 'ecommerce_user',     # Usuario de la base de datos
-        'PASSWORD': 'ecommerce_pass', # Contraseña
+        'USER': 'admin99',            # Usuario de la base de datos
+        'PASSWORD': '123456',         
+        # Contraseña
         'HOST': 'localhost',          # Servidor (local)
         'PORT': '5432',               # Puerto por defecto de PostgreSQL
     }

@@ -1,4 +1,6 @@
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 from django.db.models import Sum, Count
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import viewsets, status
@@ -70,6 +72,15 @@ class CalificacionServicioViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Si deseas que la venta esté asociada al usuario actual, puedes validar aquí
         serializer.save()
+
+@login_required
+def checkout(request):
+    carrito = request.session.get('carrito',{})
+    if not carrito:
+        print("Por favor inicia sesion o registrate para poder hacer una compra")
+        return redirect('productos')
+        
+
 
 # Reporte General de Ventas: Total de ventas e ingresos acumulados
 @api_view(['GET'])

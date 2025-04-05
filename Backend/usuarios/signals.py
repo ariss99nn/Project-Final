@@ -16,7 +16,7 @@ def crear_roles(sender, **kwargs):
 
         # Asignar permisos específicos
         if role == 'EMPLOYEE':
-            permisos = Permission.objects.filter(content_type__app_label='ventas')  # Ajusta 'ventas' al nombre real de tu app
+            permisos = Permission.objects.filter(content_type__app_label='productos')  # Ajusta 'ventas' al nombre real de tu app
             group.permissions.set(permisos)  # Asigna permisos al grupo
         elif role == 'CLIENT':
             group.permissions.clear()  # Cliente no tiene permisos administrativos
